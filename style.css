@@ -52,3 +52,32 @@ body {
   max-width: 100%;
   margin-top: 0.5rem;
 }
+
+.corner {
+  position: absolute;
+  text-align: center;
+}
+
+.corner-label {
+  display: block;
+  font-size: 0.8rem;
+  opacity: 0.7;
+  margin-bottom: 0.2rem;
+}
+
+.corner-a { top: 0; left: 50%; transform: translateX(-50%); }
+.corner-b { bottom: 0; left: 0; }
+.corner-c { bottom: 0; right: 0; }
+
+#triangle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#combo-symbol {
+  width: 60px;
+  height: 60px;
+  display: none;
+}

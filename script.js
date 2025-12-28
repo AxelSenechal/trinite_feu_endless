@@ -1,6 +1,7 @@
 // ────────────────
 // DONNÉES ÉDITABLES
 // ────────────────
+const comboSymbol = document.getElementById("combo-symbol");
 
 const DATA = {
   A: {
@@ -63,7 +64,13 @@ const DATA = {
     ]
   },
 
-  combinations: {}
+  combinations: {
+  "matiere|air|mon_mana": {
+    result: "Transmutation stable",
+    symbol: "img/symbol_transmutation.png"
+  }
+}
+
 };
 
 // ────────────────
@@ -118,6 +125,14 @@ function showList(pointKey) {
   });
 }
 
+function updateTrianglePoint(pointKey, text) {
+  const button = document.querySelector(
+    `.point[data-point="${pointKey}"]`
+  );
+  button.textContent = text;
+}
+
+
 function selectItem(pointKey, item) {
   selected[pointKey] = item;
 
@@ -126,6 +141,8 @@ function selectItem(pointKey, item) {
   detailImage.style.display = item.image ? "block" : "none";
 
   checkCombination();
+  updateTrianglePoint(pointKey, item.name);
+
 }
 
 function checkCombination() {
@@ -134,12 +151,19 @@ function checkCombination() {
     const combo = DATA.combinations[key];
 
     if (combo) {
-      resultText.textContent = combo.result;
-      resultImage.src = combo.image || "";
-      resultImage.style.display = combo.image ? "block" : "none";
-    } else {
-      resultText.textContent = "Aucun résultat spécifique";
-      resultImage.style.display = "none";
-    }
+  resultText.textContent = combo.result;
+
+  if (combo.symbol) {
+    comboSymbol.src = combo.symbol;
+    comboSymbol.style.display = "block";
+  } else {
+    comboSymbol.style.display = "none";
+  }
+
+} else {
+  resultText.textContent = "Aucun résultat spécifique";
+  comboSymbol.style.display = "none";
+}
+
   }
 }
