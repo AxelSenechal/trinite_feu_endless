@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Triangle interactif</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+  <div class="triangle">
+    <button class="point point-a" data-point="A">A</button>
+    <button class="point point-b" data-point="B">B</button>
+    <button class="point point-c" data-point="C">C</button>
+  </div>
+
+  <div class="panel">
+    <h2 id="panel-title">Sélection</h2>
+    <ul id="item-list"></ul>
+  </div>
+
+  <div class="details">
+    <img id="detail-image" src="" alt="">
+    <p id="detail-comment"></p>
+  </div>
+
+  <div class="result">
+    <h3>Résultat</h3>
+    <p id="result-text">—</p>
+    <img id="result-image" src="" alt="">
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
