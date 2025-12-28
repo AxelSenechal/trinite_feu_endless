@@ -2,6 +2,7 @@
 // DONNÉES ÉDITABLES
 // ────────────────
 const comboSymbol = document.getElementById("combo-symbol");
+const resultComponents = document.getElementById("result-components");
 
 const DATA = {
   A: {
@@ -146,24 +147,38 @@ function selectItem(pointKey, item) {
 }
 
 function checkCombination() {
+  resultComponents.innerHTML = "";
+
   if (selected.A && selected.B && selected.C) {
     const key = `${selected.A.id}|${selected.B.id}|${selected.C.id}`;
     const combo = DATA.combinations[key];
 
     if (combo) {
-  resultText.textContent = combo.result;
+      resultText.textContent = combo.result;
 
-  if (combo.symbol) {
-    comboSymbol.src = combo.symbol;
-    comboSymbol.style.display = "block";
-  } else {
-    comboSymbol.style.display = "none";
+      // Symbole central
+      if (combo.symbol) {
+        comboSymbol.src = combo.symbol;
+        comboSymbol.style.display = "block";
+      } else {
+        comboSymbol.style.display = "none";
+      }
+
+    } else {
+      resultText.textContent = "Aucun résultat spécifique";
+      comboSymbol.style.display = "none";
+    }
+
+    // 🔽 Liste des composants utilisés
+    [
+      { label: DATA.A.label, item: selected.A },
+      { label: DATA.B.label, item: selected.B },
+      { label: DATA.C.label, item: selected.C }
+    ].forEach(entry => {
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${entry.label} :</strong> ${entry.item.comment}`;
+      resultComponents.appendChild(li);
+    });
   }
-
-} else {
-  resultText.textContent = "Aucun résultat spécifique";
-  comboSymbol.style.display = "none";
 }
 
-  }
-}
